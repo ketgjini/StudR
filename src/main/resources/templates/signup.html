@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"
+ 	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Regjistrohu</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+		<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(images/bg-5.jpg);">
+					<span class="login100-form-title-1">
+						Regjistrim ne sistem
+					</span>
+				</div>
+
+				<form class="login100-form validate-form" th:action="@{/signup}" method="post" th:object="${user}">
+					<div style="color: red;" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Emri nuk duhet bosh">
+						<span class="label-input100">Emri</span>
+						<input class="input100" type="text" id="firstname" th:field="*{firstname}" placeholder="Vendos emrin" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Mbiemri nuk duhet bosh">
+						<span class="label-input100">Mbiemri</span>
+						<input class="input100" type="text" id="lastname" th:field="*{lastname}" placeholder="Vendos mbiemrin" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email nuk duhet bosh">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="email" id="email" th:field="*{email}" placeholder="Vendos adresen e-mail" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Username nuk duhet bosh">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" id="username" th:field="*{username}" placeholder="Vendos username" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div style="color: red;" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Fjalekalimi nuk duhet bosh">
+						<span class="label-input100">Fjalekalimi</span>
+						<input class="input100" type="password" id="password" th:field="*{password}" placeholder="Vendos fjalekalimin" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="item fieldinvalid"></div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Fjalekalimi nuk duhet bosh">
+						<span class="label-input100">Konfirmo fjalekalimin</span>
+						<input class="input100" type="password" id="confirmPassword" th:field="*{confirmPassword}" placeholder="Konfirmo fjalekalimin" autocomplete="off">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="item fieldinvalid"></div>
+					<div style="width:100% !important;">
+					  <select id="role" th:field="*{role}" style="border:0px !important; outline:0px !important; color: #595959;" required>
+						<option value="false" disabled="disabled">Zgjidh rolin:</option>
+						<option value="profesor" style="color:#262626 !important;">Profesor</option>
+						<option value="student" style="color:#262626 !important;">Student</option>
+					  </select>
+					</div>
+					
+					<div style="color: red;" th:if="${#fields.hasErrors('dega')}" th:errors="*{dega}" class="item fieldinvalid"></div>
+					<div style="width:100% !important;">
+						<select th:field="*{dega}" id="dega" name="dega" style="border:0px !important; outline:0px !important; color: #595959;">
+					      <option value="" disabled>Zgjidhni degën</option>
+					      <option value="" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Bachelor</option>
+					      <option value="Administrim Biznesi">Administrim Biznesi</option>
+					      <option value="Ekonomiks">Ekonomiks</option>
+					      <option value="Financë-Kontabilitet">Financ&euml;-Kontabilitet</option>
+					      <option value="Infromatikë Ekonomike">Infromatik&euml; Ekonomike</option>
+					      <option value="" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Profesional</option>
+					      <option value="Administrim Biznesi">Administrim Biznesi</option>
+					      <option value="Administrim Publik">Administrim Publik</option>
+					      <option value="Financë">Financ&euml;</option>
+					      <option value="Financë, Kontabilitet dhe Auditim">Financ&euml;, Kontabilitet dhe Auditim</option>
+					      <option value="Kontabilitet dhe Auditim (kohë e plotë)">Kontabilitet dhe Auditim (koh&euml; e plot&euml;)</option>
+					      <option value="Kontabilitet dhe Auditim (kohë e pjesshme)">Kontabilitet dhe Auditim (koh&euml; e pjesshme)</option>
+					      <option value="Marketing">Marketing</option>
+					      <option value="Menaxhim Turizmi">Menaxhim Turizmi</option>
+					      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+					      <option value="Studime Ekonomike Evropiane">Studime Ekonomike Evropiane</option>
+					      <option value="Tekonologji Informacioni dhe Menaxhimi i proceseve të Biznesit">Tekonologji Informacioni dhe Menaxhimi i proceseve t&euml; Biznesit</option>
+					      <option value="" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Shkencor</option>
+					      <option value="Administrim Biznesi">Administrim Biznesi</option>
+					      <option value="Administrim Publik">Administrim Publik</option>
+					      <option value="Ekonomiks">Ekonomiks</option>
+					      <option value="Financë">Financ&euml;</option>
+					      <option value="Kërkime Operacionale në Menaxhim">K&euml;rkime Operacionale n&euml; Menaxhim</option>
+					      <option value="Kontabilitet dhe Auditim">Kontabilitet dhe Auditim</option>
+					      <option value="Marketing">Marketing</option>
+					      <option value="Siguria e Informacionit">Siguria e Informacionit</option>
+					      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+					    </select>
+					</div>
+					
+					<br/><br/><br/>
+					<div class="flex-sb-m w-full p-b-30">
+						<div>
+							<a href="/login" class="txt1">
+								Jeni te regjistruar?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn font-weight-bold" style="background-color: #ffa31a !important; color:black !important;">
+							Regjistrohu
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		document.getElementById("role").selectedIndex = 0;
+	</script>
+<!--===============================================================================================-->
+	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/bootstrap/js/popper.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<title>Quiz</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="http://localhost:8086/quizquestions/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/css/util.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8086/quizquestions/css/main.css">
+<!--===============================================================================================-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://localhost:8086/styles/bootstrap4/bootstrap.min.css">
+<link href="http://localhost:8086/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8086/styles/courses_styles.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8086/styles/courses_responsive.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8086/styles/main_styles.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style type="text/css">
+
+	body .container-contact100 {
+		background: #ffffff;
+	}
+	
+	.logout-button:hover {
+		color:red !important;
+	}
+	
+	.profile-button:hover {
+		color: #353ce8 !important;
+	}
+	
+	.back-button:hover {
+		color:#45423e !important;	
+	}
+</style>
+</head>
+<body>
+	<div class="super_container">
+	<!-- Header -->
+
+	<header class="header d-flex flex-row" id="navbar">
+		<div class="header_content d-flex flex-row align-items-center">
+			<!-- Logo -->
+			<div class="logo_container">
+				<div class="logo">
+					<img src="http://localhost:8086/images/logo.png" alt="">
+					<span>StudR</span>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav_container">
+				<div class="main_nav">
+					<ul class="main_nav_list">
+						<li class="main_nav_item"><a href="/index">kreu</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/index.html#search">kërko kurse</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/all_courses">kurset</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/user_courses">kurset e mia</a></li>
+						<li class="main_nav_item"><a href="/about">rreth nesh</a></li>
+						<li class="main_nav_item"><a href="/contact">kontakt</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center" sec:authorize="isAuthenticated()">
+			<a href="/user_profile" style="color:white; font-size: 20px; font-family: 'Roboto', sans-serif;" class="profile-button">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				Profili
+			</a>
+			<span>|</span>
+			&nbsp;&nbsp;&nbsp;
+			<a href="/logout" class="logout-button" style="color:white; font-family: 'Roboto', sans-serif; font-size: 20px;">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+				Dil
+			</a>
+		</div>
+
+		<!-- Hamburger -->
+		<div class="hamburger_container">
+			<i class="fas fa-bars trans_200"></i>
+		</div>
+
+	</header>
+	
+	<!-- Menu -->
+	<div class="menu_container menu_mm">
+
+		<!-- Menu Close Button -->
+		<div class="menu_close_container">
+			<div class="menu_close"></div>
+		</div>
+
+		<!-- Menu Items -->
+		<div class="menu_inner menu_mm">
+			<div class="menu menu_mm">
+				<ul class="menu_list menu_mm">
+					<li class="menu_item menu_mm"><a href="/index">Kreu</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/index.html#search">Kërko kurse</a></li>
+					<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/all_courses">Kurset</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset e mia</a></li>
+					<li class="menu_item menu_mm"><a href="/about">Rreth nesh</a></li>
+					<li class="menu_item menu_mm"><a href="/contact">Kontakt</a></li>
+				</ul>
+
+				<!-- Menu Social -->
+				
+				<div class="menu_social_container menu_mm">
+					<ul class="menu_social menu_mm">
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="menu_copyright menu_mm">Denisa & Ketrina të gjitha të drejtat e rezervuara 2020</div>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="container-contact100">
+		<div class="wrap-contact100" style="margin-top:12%;">
+			<form th:action="@{/checkQuizResponses/{qid}(qid=${quiz.id})}" id="quiz-form" method="post" class="contact100-form validate-form">
+				<div class="text-center">
+					<a th:href="@{/chapter_details/{cid}(cid=${chapter.id})}">
+						<i class="fa fa-arrow-left back-button" aria-hidden="true" style="font-size: 30px; width:50px; color:#bfbfbf;"></i>
+						<span class="back-button" style="font-size: 20px; color:#bfbfbf; font-family: 'Roboto', sans-serif;">Detajet e kapitullit</span>
+					</a>
+				</div>  <br/>
+				<div class="section_title text-center">
+					<h1 class="contact100-form-title" style="color: #0d0752 !important;">Plotësoni quizin</h1>
+				</div>
+				<div class="section_title text-center">
+					<p th:if="${quiz.guidelines} != ''" style="color: #45423e !important; font-weight: bold; text-decoration: underline;">Udhëzime:</p>
+					<p style="font-style:italic;" th:text="${quiz.guidelines}"></p>
+				</div>
+				<br/>
+				<div th:if="${noMore}">
+					<span class="alert alert-info" style="color:red; width: 100% !important; border: none; background-color: transparent !important; font-weight: bold;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;Ju e keni plotësuar quizin 3 herë. </span>
+				</div>
+				<br/>
+               	<th:block th:each="question : ${questions}">
+               		<input type="hidden" name="questionId" th:value="${question.id}"/>
+               		<div>
+						<p th:text="'P: ' + ${question.question}" style="color:#e3a319; font-size: 18px; font-weight: bold;"></p>
+						<span class="focus-input100"></span>
+					</div>
+					<li class="option">
+					
+					<th:block th:each="answer : ${question.answers}">
+						<div style="color:#2d2e2e; font-size: 16px;">
+							<input type="radio" th:name="|question_${question.id}|" th:text="' ' + ${answer.answer}" th:value="${answer.id}"
+							 th:disabled="${noMore}" id="answer">
+							<span class="focus-input100"></span>
+						</div>
+					</th:block>
+					</li>
+					<hr>
+               	</th:block>
+               	<p id="missing" style="color:red; font-size: 18px;"></p>
+				<div th:if="${showResults}" style="border: 1px solid #e3a319 !important; border-radius: 5px;  width: fit-content;" >
+					<span class="alert alert-info" style="color:red; font-size: 18px; width: 100% !important; border: none; background-color: transparent !important;" th:text="${result}"> </span>
+				</div>
+				<br/><br/>
+				<div th:if="${!showResults && !noMore}" class="container-contact100-form-btn">
+					<button type="submit" class="contact100-form-btn" onClick="ValidateForm(this.form)">
+						<span>
+							Kontrollo rezultatin
+						</span> 
+					</button>
+				</div>
+				<div th:if="${showResults && !noMore}" class="container-contact100-form-btn">
+					<a th:href=@{/student/take_quiz/{cid}(cid=${quiz.id})} class="contact100-form-btn">
+						<i class="fa fa-repeat" aria-hidden="true"></i>&nbsp;
+						Ripërsërit quizin
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			
+			<!-- Footer Content -->
+
+			<div class="footer_content">
+				<div class="row">
+
+					<!-- Footer Column - About -->
+					<div class="col-lg-3 footer_col">
+
+						<!-- Logo -->
+						<div class="logo_container">
+							<div class="logo">
+								<img src="http://localhost:8086/images/logo.png" alt="">
+								<span>StudR</span>
+							</div>
+						</div>
+
+						<p class="footer_about_text">Platforma e cila do t'ju ndihmojë të arrini rezultatet që gjithmonë i keni dëshiruar.</p>
+
+					</div>
+
+					<!-- Footer Column - Menu -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Menu</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="/index">Kreu</a></li>
+								<li class="footer_list_item" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset</a></li>
+								<li class="footer_list_item"><a href="/about">Rreth nesh</a></li>
+								<li class="footer_list_item"><a href="/contact">Kontakt</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Usefull Links -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Faqe të nevojshme</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">FAQ</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Contact -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Kontakt</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="http://localhost:8086/images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									Fakulteti i Ekonomisë,
+									Rr. Arben Broci, 1003 Tiranë, Shqipëri
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="http://localhost:8086/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									+355 69 765 0584
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="http://localhost:8086/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>infostudr@gmail.com
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer Copyright -->
+
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+				<div class="footer_copyright">
+					<span>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Të gjitha të drejtat e rezervuara Denisa & Ketrina
+					</span>
+				</div>
+				<div class="footer_social ml-sm-auto">
+					<ul class="menu_social">
+						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+  </div>
+
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/bootstrap/js/popper.js"></script>
+	<script src="http://localhost:8086/quizquestions/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/daterangepicker/moment.min.js"></script>
+	<script src="quizquestions/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="http://localhost:8086/quizquestions/js/main.js"></script>
+	
+	<script src="http://localhost:8086/js/jquery-3.2.1.min.js"></script>
+	<script src="http://localhost:8086/styles/bootstrap4/popper.js"></script>
+	<script src="http://localhost:8086/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="http://localhost:8086/plugins/greensock/TweenMax.min.js"></script>
+	<script src="http://localhost:8086/plugins/greensock/TimelineMax.min.js"></script>
+	<script src="http://localhost:8086/plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="http://localhost:8086/plugins/greensock/animation.gsap.min.js"></script>
+	<script src="http://localhost:8086/plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="http://localhost:8086/plugins/scrollTo/jquery.scrollTo.min.js"></script>
+	<script src="http://localhost:8086/plugins/easing/easing.js"></script>
+	<script src="http://localhost:8086/js/courses_custom.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+	   var prevScrollpos = window.pageYOffset;
+	   window.onscroll = function() {
+	   var currentScrollPos = window.pageYOffset;
+	     if (prevScrollpos > currentScrollPos) {
+	       document.getElementById("navbar").style.top = "45px";
+	     } else {
+	       document.getElementById("navbar").style.top = "-110px";
+	     }
+	     prevScrollpos = currentScrollPos;
+	   }
+	   
+	   $(document).on('submit', 'form', function () {
+
+		    var validate = true;
+		    var unanswered = new Array();
+
+		    // Loop cdo set te disponueshem
+		    $('.option').each(function () {
+		        // Question text
+		        var question = $(this).prev();
+		        // Validate
+		        if (!$(this).find('input').is(':checked')) {
+		            //Nuk u validua... shfaq mesazh
+		            unanswered.push(question.text());
+		            question.css('color', 'red'); // Vendos ngjyre te kuqe pyetjes
+		            validate = false;
+		        }
+		    });
+
+		    if (unanswered.length > 0) {
+		        msg = "Ju nuk i jeni përgjigjur pyetjeve të mëposhtme:<br>" + unanswered.join('<br>'); 
+		        document.getElementById("missing").innerHTML = msg;
+		    }
+		    return validate;
+		});
+
+	</script>
+</body>
+</html>

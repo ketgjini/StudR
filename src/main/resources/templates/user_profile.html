@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en"
+ 	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<meta charset="utf-8">
+	<title>Profili</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+		    font-size: 16px;
+		    color: #6f6f6f;
+		    font-weight: 400;
+		    line-height: 28px;
+		    letter-spacing: 0.8px;
+		    margin-top:20px;
+		}
+		.font-size38 {
+		    font-size: 38px;
+		}
+		.team-single-text .section-heading h4,
+		.section-heading h5 {
+		    font-size: 36px
+		}
+		
+		.team-single-text .section-heading.half {
+		    margin-bottom: 20px
+		}
+		
+		@media screen and (max-width: 1199px) {
+		    .team-single-text .section-heading h4,
+		    .section-heading h5 {
+		        font-size: 32px
+		    }
+		    .team-single-text .section-heading.half {
+		        margin-bottom: 15px
+		    }
+		}
+		
+		@media screen and (max-width: 991px) {
+		    .team-single-text .section-heading h4,
+		    .section-heading h5 {
+		        font-size: 28px
+		    }
+		    .team-single-text .section-heading.half {
+		        margin-bottom: 10px
+		    }
+		}
+		
+		@media screen and (max-width: 767px) {
+		    .team-single-text .section-heading h4,
+		    .section-heading h5 {
+		        font-size: 24px
+		    }
+		}
+		
+		
+		.team-single-icons ul li {
+		    display: inline-block;
+		    border: 1px solid #02c2c7;
+		    border-radius: 50%;
+		    color: #86bc42;
+		    margin-right: 8px;
+		    margin-bottom: 5px;
+		    -webkit-transition-duration: .3s;
+		    transition-duration: .3s
+		}
+		
+		.team-single-icons ul li a {
+		    color: #02c2c7;
+		    display: block;
+		    font-size: 14px;
+		    height: 25px;
+		    line-height: 26px;
+		    text-align: center;
+		    width: 25px
+		}
+		
+		.team-single-icons ul li:hover {
+		    background: #02c2c7;
+		    border-color: #02c2c7
+		}
+		
+		.team-single-icons ul li:hover a {
+		    color: #fff
+		}
+		
+		.team-social-icon li {
+		    display: inline-block;
+		    margin-right: 5px
+		}
+		
+		.team-social-icon li:last-child {
+		    margin-right: 0
+		}
+		
+		.team-social-icon i {
+		    width: 30px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-align: center;
+		    font-size: 15px;
+		    border-radius: 50px
+		}
+		
+		.padding-30px-all {
+		    padding: 30px;
+		}
+		.bg-light-gray {
+		    background-color: #f7f7f7;
+		}
+		.text-center {
+		    text-align: center!important;
+		}
+		img {
+		    max-width: 100%;
+		    height: auto;
+		}
+		
+		
+		.list-style9 {
+		    list-style: none;
+		    padding: 0
+		}
+		
+		.list-style9 li {
+		    position: relative;
+		    padding: 0 0 15px 0;
+		    margin: 0 0 15px 0;
+		    border-bottom: 1px dashed rgba(0, 0, 0, 0.1)
+		}
+		
+		.list-style9 li:last-child {
+		    border-bottom: none;
+		    padding-bottom: 0;
+		    margin-bottom: 0
+		}
+		
+		
+		.text-sky {
+		    color: #02c2c7
+		}
+		
+		.text-orange {
+		    color: #e95601
+		}
+		
+		.text-green {
+		    color: #5bbd2a
+		}
+		
+		.text-yellow {
+		    color: #f0d001
+		}
+		
+		.text-pink {
+		    color: #ff48a4
+		}
+		
+		.text-purple {
+		    color: #9d60ff
+		}
+		
+		.text-lightred {
+		    color: #ff5722
+		}
+		
+		a.text-sky:hover {
+		    opacity: 0.8;
+		    color: #02c2c7
+		}
+		
+		a.text-orange:hover {
+		    opacity: 0.8;
+		    color: #e95601
+		}
+		
+		a.text-green:hover {
+		    opacity: 0.8;
+		    color: #5bbd2a
+		}
+		
+		a.text-yellow:hover {
+		    opacity: 0.8;
+		    color: #f0d001
+		}
+		
+		a.text-pink:hover {
+		    opacity: 0.8;
+		    color: #ff48a4
+		}
+		
+		a.text-purple:hover {
+		    opacity: 0.8;
+		    color: #9d60ff
+		}
+		
+		a.text-lightred:hover {
+		    opacity: 0.8;
+		    color: #ff5722
+		}
+		
+		.custom-progress {
+		    height: 10px;
+		    border-radius: 50px;
+		    box-shadow: none;
+		    margin-bottom: 25px;
+		}
+		.progress {
+		    display: -ms-flexbox;
+		    display: flex;
+		    height: 1rem;
+		    overflow: hidden;
+		    font-size: .75rem;
+		    background-color: #e9ecef;
+		    border-radius: .25rem;
+		}
+		
+		
+		.bg-sky {
+		    background-color: #02c2c7
+		}
+		
+		.bg-orange {
+		    background-color: #e95601
+		}
+		
+		.bg-green {
+		    background-color: #5bbd2a
+		}
+		
+		.bg-yellow {
+		    background-color: #f0d001
+		}
+		
+		.bg-pink {
+		    background-color: #ff48a4
+		}
+		
+		.bg-purple {
+		    background-color: #9d60ff
+		}
+		
+		.bg-lightred {
+		    background-color: #ff5722
+		}
+		
+		.hoverBackground:hover {
+			background-color: #ffa600 !important;
+		}
+		.noHoverColor:hover {
+			background-color: transparent !important;
+		}
+		.logout-button:hover {
+			color:red !important;
+		}
+		
+		#navbar .header .d-flex .flex-row {
+			width: max-content;
+		}
+	
+    </style>
+</head>
+<body>
+<div class="container" style="max-width: 2000px;">
+	<header class="header d-flex flex-row" id="navbar" style="min-width: 1300px;">
+		<div class="header_content d-flex flex-row align-items-center">
+			<!-- Logo -->
+			<div class="logo_container">
+				<div class="logo">
+					<img src="images/logo.png" alt="">
+					<span>StudR</span>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav_container">
+				<div class="main_nav">
+					<ul class="main_nav_list">
+						<li class="main_nav_item"><a href="/index">kreu</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/index.html#search">kërko kurse</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/all_courses">kurset</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/user_courses">kurset e mia</a></li>
+						<li class="main_nav_item"><a href="/about">rreth nesh</a></li>
+						<li class="main_nav_item"><a href="/contact">kontakt</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center">
+			<a href="/logout" style="color:white; font-size: 20px;" class="logout-button">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+				Dil
+			</a>
+		</div>
+
+		<!-- Hamburger -->
+		<div class="hamburger_container">
+			<i class="fas fa-bars trans_200"></i>
+		</div>
+	</header>
+	<!-- Menu -->
+	<div class="menu_container menu_mm">
+
+		<!-- Menu Close Button -->
+		<div class="menu_close_container">
+			<div class="menu_close"></div>
+		</div>
+
+		<!-- Menu Items -->
+		<div class="menu_inner menu_mm">
+			<div class="menu menu_mm">
+				<ul class="menu_list menu_mm">
+					<li class="menu_item menu_mm"><a href="/index">Kreu</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/index.html#search">Kërko kurse</a></li>
+					<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/all_courses">Kurset</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset e mia</a></li>
+					<li class="menu_item menu_mm"><a href="/about">Rreth nesh</a></li>
+					<li class="menu_item menu_mm"><a href="/contact">Kontakt</a></li>
+				</ul>
+
+				<!-- Menu Social -->
+				
+				<div class="menu_social_container menu_mm">
+					<ul class="menu_social menu_mm">
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="menu_copyright menu_mm">Denisa & Ketrina të gjitha të drejtat e rezervuara 2020</div>
+			</div>
+		</div>
+	</div>
+    <div class="team-single" style="margin-top:20% !important; margin-bottom:10%">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+                <div class="team-single-img">
+                    <img th:if="${picture} == null" src="/images/profile-avatar.png" alt="foto profili" width="200" height="400" style="position:relative; left: 100px;" class="rounded-circle img-thumbnail">
+                    <div style="display: inline-flex;  position: relative;">
+	                    <a th:if="${picture} != null" th:href="@{/delete/user/{uid}(uid=${user.id})}" style="position:absolute;  left:150%; top: 10%; transform: translate(-50%, -50%);">
+	                    	<i class="far fa-trash-alt" id="delete-prof-pic" style="color:#FF0000; font-weight:bold; font-size: 22px;"></i>
+	                    </a>
+	                    <img th:if="${picture} != null" th:src="|data:image/png;base64,${userImage}|" alt="foto profili" style="position:relative; left: 100px;" width="200" height="400" class="rounded-circle img-thumbnail">
+                	</div>
+                </div>
+                <div class="bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center">
+                    <h4 class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600" style="text-transform: capitalize;" th:text="${user.role}"></h4>
+                    <p class="sm-width-95 sm-margin-auto">
+	                    <a th:href="@{/edit_profile/{uid}(uid=${user.id})}" class="edit-button hoverBackground">
+	                    	<i class="fa fa-edit" aria-hidden="true" style="font-size: 16px; font-weight: bold"></i> Ndrysho të dhënat
+	                    </a>
+                    </p>
+                    <div class="margin-20px-top team-single-icons">
+                        <ul class="no-margin">
+                            <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="fab fa-google-plus-g"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <div class="team-single-text padding-50px-left sm-no-padding-left">
+                    <h4 class="font-size38 sm-font-size32 xs-font-size30" th:text="${user.firstname} + ' ' + ${user.lastname}"></h4>
+                    <p class="no-margin-bottom"></p>
+                    <div class="contact-info-section margin-40px-tb">
+                        <ul class="list-style9 no-margin">
+                        	<li>
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <i class="fas fa-mobile-alt text-purple"></i>
+                                        <strong class="margin-10px-left xs-margin-four-left text-purple">Username:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p th:text="${user.username}"></p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li sec:authorize="hasRole('student')">
+                                <div class="row">
+                                    <div class="col-md-5 col-5">
+                                        <i class="fas fa-graduation-cap text-orange"></i>
+                                        <strong class="margin-10px-left text-orange">Dega:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7">
+                                        <p th:text="${user.dega}"></p>
+                                    </div>
+                                </div>
+
+                            </li>
+                           
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-5 col-5 hoverBackground noHoverColor">
+                                        <i class="fas fa-envelope"></i>
+                                        <strong class="margin-10px-left xs-margin-four-left">Email:</strong>
+                                    </div>
+                                    <div class="col-md-7 col-7 ">
+                                        <p><a class="hoverBackground" th:href="'mailto:' + ${user.email}" th:text="${user.email}"></a></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+			
+					<i style="font-size: 20px !important;" class="far fa-file text-lightred"></i>
+                    <strong class="margin-10px-left text-lightred" style="font-size: 20px !important;">Kurset</strong>
+                    <div class="sm-no-margin">
+                    <th:block th:each="course : ${user.courses}">
+                        <div class="progress-text">
+                            <div class="row" style="width:100%; display: inline-flex;">
+                                <div class="col-9" style="display: inline-flex;">
+	                                <h6 style="font-weight: bold; color: black; font-style: italic;" ><a class="noHoverColor" th:href="@{/course_chapters/{cid}(cid=${course.id})}" th:text="${course.courseName}"></a></h6>&nbsp;&nbsp;
+	                                <h6 th:text="' - ' + ${course.department}"></h6>
+                                </div>
+                            </div>
+                        </div>
+                     </th:block>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+   <!-- Footer -->
+   <footer class="footer">
+		<div class="container">
+			
+			<!-- Footer Content -->
+
+			<div class="footer_content">
+				<div class="row">
+
+					<!-- Footer Column - About -->
+					<div class="col-lg-3 footer_col">
+
+						<!-- Logo -->
+						<div class="logo_container">
+							<div class="logo">
+								<img src="images/logo.png" alt="">
+								<span>StudR</span>
+							</div>
+						</div>
+
+						<p class="footer_about_text">Platforma e cila do t'ju ndihmoj&euml; t&euml; arrini rezultatet q&euml; gjithmon&euml; i keni d&euml;shiruar.</p>
+
+					</div>
+
+					<!-- Footer Column - Menu -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Menu</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="/index">Kreu</a></li>
+								<li class="footer_list_item" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset</a></li>
+								<li class="footer_list_item"><a href="/about">Rreth nesh</a></li>
+								<li class="footer_list_item"><a href="/contact">Kontakt</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Usefull Links -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Faqe t&euml; nevojshme</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">FAQ</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Contact -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Kontakt</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									Fakulteti i Ekonomis&euml;,
+									Rr. Arben Broci, 1003 Tiran&euml;, Shqip&euml;ri
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									+355 69 765 0584
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>infostudr@gmail.com
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer Copyright -->
+
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+				<div class="footer_copyright">
+					<span>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> T&euml; gjitha t&euml; drejtat e rezervuara Denisa & Ketrina
+					</span>
+				</div>
+				<div class="footer_social ml-sm-auto">
+					<ul class="menu_social">
+						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>  
+	      
+  </body>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript"></script>
+  	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="styles/bootstrap4/popper.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="plugins/greensock/TweenMax.min.js"></script>
+	<script src="plugins/greensock/TimelineMax.min.js"></script>
+	<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="plugins/greensock/animation.gsap.min.js"></script>
+	<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
+	<script src="plugins/easing/easing.js"></script>
+	<script src="js/custom.js"></script> 
+   	<script type="text/javascript">
+	    var prevScrollpos = window.pageYOffset;
+	    window.onscroll = function() {
+	    var currentScrollPos = window.pageYOffset;
+	      if (prevScrollpos > currentScrollPos) {
+	        document.getElementById("navbar").style.top = "45px";
+	      } else {
+	        document.getElementById("navbar").style.top = "-110px";
+	      }
+	      prevScrollpos = currentScrollPos;
+	    }
+   	</script>
+</html>

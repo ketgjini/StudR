@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en"
+ 	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<meta charset="utf-8">
+<head>
+	<style>
+		body{
+	    	background: -webkit-linear-gradient(left, #161769, #ffa600);
+		}
+		.contact{
+			padding: 4%;
+			height: 400px;
+		}
+		.col-md-3{
+			background: #ff9b00;
+			padding: 4%;
+			border-top-left-radius: 0.5rem;
+			border-bottom-left-radius: 0.5rem;
+		}
+		.contact-info{
+			margin-top:10%;
+		}
+		.contact-info img{
+			margin-bottom: 15%;
+		}
+		.contact-info h2{
+			margin-bottom: 10%;
+		}
+		.col-md-9{
+			background: #fff;
+			padding: 3%;
+			border-top-right-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
+		.contact-form label{
+			font-weight:600;
+		}
+		.contact-form button{
+			background: #25274d;
+			color: #fff;
+			font-weight: 600;
+			width: 25%;
+		}
+		.contact-form button:focus{
+			box-shadow:none;
+		}
+		
+		.contact-form a{
+			color: #fff;
+			font-weight: 600;
+			width: 25%;
+		}
+	</style>
+
+</head>
+
+<div class="container contact">
+	<form th:action="@{/updateCourse/{cid}(cid=${course.id})}" method="post" th:object="${course}" style="width:100% !important;">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<i class="fas fa-chalkboard-teacher" aria-hidden="true" style="font-size: 50px; color:white;"></i>
+				<br/><br/>
+				<h2>Ndryshoni t&euml; dh&euml;nat e kursit</h2>
+				<h4>Ndryshoni t&euml; dh&euml;nat e kursit tuaj.</h4>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="courseName">Emri i kursit:</label>
+				  <div class="col-sm-10">          
+					<input type="text" class="form-control" id="courseName" th:field="*{courseName}" 
+						placeholder="Emri i kursit" name="courseName" oninvalid="this.setCustomValidity('Ju lutemi vendosni një emër të vlefshëm')" oninput="setCustomValidity('')" required>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="department">Departamenti:</label>
+				  <div class="col-sm-10">          
+					<select class="custom-select" th:field="*{department}" id="department" name="department" 
+						required oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+				      <option value="" selected>Zgjidhni nj&euml; departament</option>
+				      <option value="Departamenti i Ekonomiksit">Departamenti i Ekonomiksit</option>
+				      <option value="Departamenti i Financës">Departamenti i Financ&euml;s</option>
+				      <option value="Departamenti i Kontabilitetit">Departamenti i Kontabilitetit</option>
+				      <option value="Departamenti i Marketingut">Departamenti i Marketingut</option>
+				      <option value="Departamenti i Manaxhimit">Departamenti i Manaxhimit</option>
+				      <option value="Departamenti i Statistikës dhe Informatikës së Zbatuar">Departamenti i Statistik&euml;s dhe Informatik&euml;s s&euml; Zbatuar</option>
+				    </select>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="dega">Dega:</label>
+				  <div class="col-sm-10">
+					<select class="custom-select" th:field="*{dega}" id="dega" name="dega" 
+						required oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+				      <option value="" selected>Zgjidhni degën</option>
+				      <option value="-1" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Bachelor</option>
+				      <option value="Administrim Biznesi">Administrim Biznesi</option>
+				      <option value="Ekonomiks">Ekonomiks</option>
+				      <option value="Financë-Kontabilitet">Financ&euml;-Kontabilitet</option>
+				      <option value="Infromatikë Ekonomike">Infromatik&euml; Ekonomike</option>
+				      <option value="" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Profesional</option>
+				      <option value="Administrim Biznesi">Administrim Biznesi</option>
+				      <option value="Administrim Publik">Administrim Publik</option>
+				      <option value="Financë">Financ&euml;</option>
+				      <option value="Financë, Kontabilitet dhe Auditim">Financ&euml;, Kontabilitet dhe Auditim</option>
+				      <option value="Kontabilitet dhe Auditim (kohë e plotë)">Kontabilitet dhe Auditim (koh&euml; e plot&euml;)</option>
+				      <option value="Kontabilitet dhe Auditim (kohë e pjesshme)">Kontabilitet dhe Auditim (koh&euml; e pjesshme)</option>
+				      <option value="Marketing">Marketing</option>
+				      <option value="Menaxhim Turizmi">Menaxhim Turizmi</option>
+				      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+				      <option value="Studime Ekonomike Evropiane">Studime Ekonomike Evropiane</option>
+				      <option value="Tekonologji Informacioni dhe Menaxhimi i proceseve të Biznesit">Tekonologji Informacioni dhe Menaxhimi i proceseve t&euml; Biznesit</option>
+				      <option value="" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Shkencor</option>
+				      <option value="Administrim Biznesi">Administrim Biznesi</option>
+				      <option value="Administrim Publik">Administrim Publik</option>
+				      <option value="Ekonomiks">Ekonomiks</option>
+				      <option value="Financë">Financ&euml;</option>
+				      <option value="Kërkime Operacionale në Menaxhim">K&euml;rkime Operacionale n&euml; Menaxhim</option>
+				      <option value="Kontabilitet dhe Auditim">Kontabilitet dhe Auditim</option>
+				      <option value="Marketing">Marketing</option>
+				      <option value="Siguria e Informacionit">Siguria e Informacionit</option>
+				      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+				    </select>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="semester">Semestri:</label>
+				  <div class="col-sm-10">          
+					<select class="custom-select" th:field="*{semester}" id="semester" name="semester" 
+						required oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+				      <option value="-1" selected>Zgjidhni semestrin</option>
+				      <option value="1">Semestri 1</option>
+				      <option value="2">Semestri 2</option>
+				    </select>
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <label for="start-date" class="control-label col-sm-2">Data e fillimit:</label>
+				  <div class="col-sm-10">
+				    <input class="form-control" type="date" value="2020-09-30" id="start-date" name="startTime" th:field="*{startTime}">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="end-date" class="control-label col-sm-2">Data e mbarimit:</label>
+				  <div class="col-sm-10">
+				    <input class="form-control" type="date" value="2020-09-30" id="end-date" name="endTime" th:field="*{endTime}">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="description">P&euml;rshkrimi:</label>
+				  <div class="col-sm-10">
+					<textarea class="form-control" rows="5" id="description" name="description" th:field="*{description}"></textarea>
+				  </div>
+				</div>
+				<div class="form-group">        
+				  <div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Ruaj</button>
+					<a th:href="@{/user_courses}" class="btn btn-default" style="background-color:#ffac0f">Anulo</a>
+				  </div>
+				</div>
+			 	<br/><br/>
+				<div class="form-group">
+					<div class="footer_copyright">
+						<span style="color:black;">
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> T&euml; gjitha t&euml; drejtat e rezervuara Denisa & Ketrina
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+   </form>
+</div>
+<script>
+$(document).ready(function() {
+	$('.mdb-select').materialSelect();
+});
+</script>
+

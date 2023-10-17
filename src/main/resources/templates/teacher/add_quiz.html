@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"
+ 	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<meta charset="UTF-8">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<meta charset="cp1252">
+<head>
+	<style>
+		body{
+	    	background: -webkit-linear-gradient(left, #161769, #ffa600);
+		}
+		.contact{
+			padding: 4%;
+			height: 400px;
+		}
+		.col-md-3{
+			background: #ff9b00;
+			padding: 4%;
+			border-top-left-radius: 0.5rem;
+			border-bottom-left-radius: 0.5rem;
+		}
+		.contact-info{
+			margin-top:10%;
+		}
+		.contact-info img{
+			margin-bottom: 15%;
+		}
+		.contact-info h2{
+			margin-bottom: 10%;
+		}
+		.col-md-9{
+			background: #fff;
+			padding: 3%;
+			border-top-right-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
+		.contact-form label{
+			font-weight:600;
+		}
+		.contact-form button{
+			background: #25274d;
+			color: #fff;
+			font-weight: 600;
+			width: 25%;
+		}
+		.contact-form button:focus{
+			box-shadow:none;
+		}
+		
+		.contact-form a{
+			color: #fff;
+			font-weight: 600;
+			width: 25%;
+		}
+		
+		.onHover:hover {
+			color: #ffa600 !important;
+		}
+	</style>
+
+</head>
+
+<div class="container contact">
+	<form th:action="@{/saveQuiz/{cid}(cid=${chapter.id})}" method="post" th:object="${quiz}" style="width:100% !important;">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<i class="fa fa-folder-open" style="font-size: 50px; color:white;"></i>
+				<br/><br/>
+				<h2><span>Shtoni nj&euml; quiz</span></h2>
+				<h4>Plot&euml;soni t&euml; dh&euml;nat e quiz-it.</h4>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="title">Emri:</label>
+				  <div class="col-sm-10" th:if="${quiz} == null">          
+					<input type="text" class="form-control" id="title" placeholder="Emri i quiz" name="quizName"
+					oninvalid="this.setCustomValidity('Kjo fushë nuk duhet bosh')" oninput="setCustomValidity('')" required>
+				  </div>
+				  
+				  <div class="col-sm-10" th:if="${quiz} != null">          
+					<input type="text" class="form-control" id="title" placeholder="Emri i quiz" name="quizName"
+					oninvalid="this.setCustomValidity('Kjo fushë nuk duhet bosh')" oninput="setCustomValidity('')" th:field="${quiz.quizName}" required>
+				  </div>
+
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="summary">Udh&euml;zime:</label>
+				  <div class="col-sm-10" th:if="${quiz} == null">
+					<textarea class="form-control" rows="5" id="summary" name="guidelines" placeholder="Shkruani disa udh&euml;zime"></textarea>
+				  </div>
+				  
+				  <div class="col-sm-10" th:if="${quiz} != null">
+					<textarea class="form-control" rows="5" id="summary" name="guidelines" th:field="${quiz.guidelines}" placeholder="Shkruani disa udh&euml;zime"></textarea>
+				  </div>
+				
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm-2" for="title">Numri i pyetjeve:</label>
+				  <div class="col-sm-10">          
+					<input type="number" class="form-control" id="title" min="0" placeholder="Numri i pyetjeve" name="questionNumber"
+					oninvalid="this.setCustomValidity('Kjo fushë nuk duhet bosh')" oninput="setCustomValidity('')" required>
+				  </div>
+				</div>
+				<div class="form-group">        
+				  <div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default onHover">Shto pyetjet</button>
+					<a th:href="@{/chapter_details/{cid}(cid=${chapter.id})}" class="btn btn-default" style="background-color:#ffac0f">Anulo</a>
+				  </div>
+				</div>
+			 	<br/><br/>
+				<div class="form-group">
+					<div class="footer_copyright">
+						<span style="color:black;">
+							Copyright &copy;<script>document.write(new Date().getFullYear());</script> T&euml; gjitha t&euml; drejtat e rezervuara Denisa & Ketrina
+						</span>
+					</div>
+				</div>
+			</div>
+		 </div>		
+	  </div>
+	</div>
+  </form>
+</div>
+<script>
+$(document).ready(function() {
+	$('.mdb-select').materialSelect();
+});
+</script>
+

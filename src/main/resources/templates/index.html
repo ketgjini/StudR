@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Course</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Course Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+	.logout-button:hover {
+		color:red !important;
+	}
+	
+	.profile-button:hover {
+		color: #353ce8 !important;
+	}
+</style>
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header d-flex flex-row" id="navbar">
+		<div class="header_content d-flex flex-row align-items-center">
+			<!-- Logo -->
+			<div class="logo_container">
+				<div class="logo">
+					<img src="images/logo.png" alt="">
+					<span>StudR</span>
+				</div>
+			</div>
+
+			<!-- Main Navigation -->
+			<nav class="main_nav_container">
+				<div class="main_nav">
+					<ul class="main_nav_list">
+						<li class="main_nav_item"><a href="index">kreu</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="#search">kërko kurse</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/all_courses">kurset</a></li>
+						<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/user_courses">kurset e mia</a></li>
+						<li class="main_nav_item"><a href="about">rreth nesh</a></li>
+						<li class="main_nav_item"><a href="contact">kontakt</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center" sec:authorize="!isAuthenticated()">
+			<a href="/user_login" style="color:white; font-size: 16px;">
+				<i class="fa fa-sign-in" aria-hidden="true"></i>
+				Akseso
+			</a>
+			<span>|</span>
+			&nbsp;&nbsp;&nbsp;
+			<a href="/user_registration" style="color:white; font-size: 16px;">
+				<i class="fas fa-user-plus" aria-hidden="true"></i>
+				Regjistrohu
+			</a>
+		</div>
+		<div class="header_side d-flex flex-row justify-content-center align-items-center" sec:authorize="isAuthenticated()">
+			<a href="/user_profile" style="color:white; font-size: 20px;" class="profile-button">
+				<i class="fa fa-user" aria-hidden="true"></i>
+				Profili
+			</a>
+			<span>|</span>
+			&nbsp;&nbsp;&nbsp;
+			<a href="/logout" class="logout-button" style="color:white; font-size: 20px;">
+				<i class="fa fa-sign-out" aria-hidden="true"></i>
+				Dil
+			</a>
+		</div>
+		<!-- Hamburger -->
+		<div class="hamburger_container">
+			<i class="fas fa-bars trans_200"></i>
+		</div>
+
+	</header>
+	
+	<!-- Menu -->
+	<div class="menu_container menu_mm">
+
+		<!-- Menu Close Button -->
+		<div class="menu_close_container">
+			<div class="menu_close"></div>
+		</div>
+
+		<!-- Menu Items -->
+		<div class="menu_inner menu_mm">
+			<div class="menu menu_mm">
+				<ul class="menu_list menu_mm">
+					<li class="menu_item menu_mm"><a href="index">Kreu</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/index.html#search">Kërko kurse</a></li>
+					<li class="menu_item menu_mm" sec:authorize="isAuthenticated()"><a href="/all_courses">Kurset</a></li>
+					<li class="main_nav_item" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset e mia</a></li>
+					<li class="menu_item menu_mm"><a href="about">Rreth nesh</a></li>
+					<li class="menu_item menu_mm"><a href="contact">Kontakt</a></li>
+				</ul>
+
+				<!-- Menu Social -->
+				
+				<div class="menu_social_container menu_mm">
+					<ul class="menu_social menu_mm">
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item menu_mm"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+
+				<div class="menu_copyright menu_mm">Denisa & Ketrina të gjitha të drejtat e rezervuara 2020</div>
+			</div>
+
+		</div>
+
+	</div>
+	
+	<!-- Home -->
+
+	<div class="home">
+
+		<!-- Hero Slider -->
+		<div class="hero_slider_container">
+			<div class="hero_slider owl-carousel">
+				
+				<!-- Hero Slide -->
+				<div class="hero_slide">
+					<div class="hero_slide_background" style="background-image:url(images/slider_background.jpg)"></div>
+					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+						<div class="hero_slide_content text-center">
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Përmirëso <span>Edukimin</span> tënd sot!</h1>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Hero Slide -->
+				<div class="hero_slide">
+					<div class="hero_slide_background" style="background-image:url(images/library_slider.jpg)"></div>
+					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+						<div class="hero_slide_content text-center">
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Përmirëso <span>Edukimin</span> tënd sot!</h1>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Hero Slide -->
+				<div class="hero_slide">
+					<div class="hero_slide_background" style="background-image:url(images/slider_uni8.jpg)"></div>
+					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+						<div class="hero_slide_content text-center">
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Përmirëso <span>Edukimin</span> tënd sot!</h1>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
+			<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+		</div>
+
+	</div>
+
+	<div class="hero_boxes">
+		<div class="hero_boxes_inner">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-lg-4 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="images/earth-globe.svg" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">Klasa Online</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="images/books.svg" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">Quize</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="images/professor.svg" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">Dorëzim detyrash</h2>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/><br/><br/>
+	<!-- Register -->
+
+	<div class="register">
+
+		<div class="container-fluid">
+			
+			<div class="row row-eq-height">
+				<div class="col-lg-12 nopadding">
+					
+					<!-- Register -->
+
+					<div class="register_section d-flex flex-column align-items-center justify-content-center"  sec:authorize="!isAuthenticated()">
+						<div class="register_content text-center">
+							<h1 class="register_title">Regjistrohuni tani për të përfituar më tepër prej edukimit tuaj!</h1>
+							<p class="register_text">Kjo platformë është ndërtuar për t'i ardhur në ndihmë të gjithë studentëve të cilët duan të përvetësojnë dhe kontrollojnë njohuritë e tyre.</p>
+							<div class="button button_1 register_button mx-auto trans_200"><a href="/user_registration">Regjistrohu tani</a></div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-lg-12 nopadding">
+					
+					<!-- Search -->
+
+					<div id="search" class="search_section d-flex flex-column align-items-center justify-content-center"  sec:authorize="isAuthenticated()" style="padding-bottom: 50px; padding-top: 50px;">
+						<div class="search_background" style="background-image:url(images/search_background.jpg);"></div>
+						<div class="search_content text-center">
+							<h1 class="search_title">Kërko kurse</h1>
+							<form id="search_form" class="search_form" th:action="@{/courses}" method="get">
+								<input id="search_form_name" class="input_field search_form_name" type="text" placeholder="Emri i kursit" name="courseName">
+								<br/><br/>
+								<select id="search_form_degree" class="input_field search_form_degree" name="department">
+							      <option value="" selected>Zgjidhni nj&euml; departament</option>
+							      <option value="Departamenti i Ekonomiksit">Departamenti i Ekonomiksit</option>
+							      <option value="Departamenti i Financës">Departamenti i Financ&euml;s</option>
+							      <option value="Departamenti i Kontabilitetit">Departamenti i Kontabilitetit</option>
+							      <option value="Departamenti i Marketingut">Departamenti i Marketingut</option>
+							      <option value="Departamenti i Manaxhimit">Departamenti i Manaxhimit</option>
+							      <option value="Departamenti i Statistikës dhe Informatikës së Zbatuar">Departamenti i Statistik&euml;s dhe Informatik&euml;s s&euml; Zbatuar</option>
+							    </select>
+								<br/>
+								<select id="search_form_degree" class="input_field search_form_degree" name="dega">
+                                      <option value=""  selected>Zgjidhni deg&euml;n</option>
+                                      <option value="false" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Bachelor</option>
+								      <option value="Administrim Biznesi">Administrim Biznesi</option>
+								      <option value="Ekonomiks">Ekonomiks</option>
+								      <option value="Financë-Kontabilitet">Financ&euml;-Kontabilitet</option>
+								      <option value="Infromatikë Ekonomike">Infromatik&euml; Ekonomike</option>
+								      <option value="false" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Profesional</option>
+								      <option value="Administrim Biznesi">Administrim Biznesi</option>
+								      <option value="Administrim Publik">Administrim Publik</option>
+								      <option value="Financë">Financ&euml;</option>
+								      <option value="Financë, Kontabilitet dhe Auditim">Financ&euml;, Kontabilitet dhe Auditim</option>
+								      <option value="Kontabilitet dhe Auditim (kohë e plotë)">Kontabilitet dhe Auditim (koh&euml; e plot&euml;)</option>
+								      <option value="Kontabilitet dhe Auditim (kohë e pjesshme)">Kontabilitet dhe Auditim (koh&euml; e pjesshme)</option>
+								      <option value="Marketing">Marketing</option>
+								      <option value="Menaxhim Turizmi">Menaxhim Turizmi</option>
+								      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+								      <option value="Studime Ekonomike Evropiane">Studime Ekonomike Evropiane</option>
+								      <option value="Tekonologji Informacioni dhe Menaxhimi i proceseve të Biznesit">Tekonologji Informacioni dhe Menaxhimi i proceseve t&euml; Biznesit</option>
+								      <option value="false" class="dropdown-header" disabled style="color:#ffac0f; font-size: 14px; text-transform: uppercase;">Master Shkencor</option>
+								      <option value="Administrim Biznesi">Administrim Biznesi</option>
+								      <option value="Administrim Publik">Administrim Publik</option>
+								      <option value="Ekonomiks">Ekonomiks</option>
+								      <option value="Financë">Financ&euml;</option>
+								      <option value="Kërkime Operacionale në Menaxhim">K&euml;rkime Operacionale n&euml; Menaxhim</option>
+								      <option value="Kontabilitet dhe Auditim">Kontabilitet dhe Auditim</option>
+								      <option value="Marketing">Marketing</option>
+								      <option value="Siguria e Informacionit">Siguria e Informacionit</option>
+								      <option value="Sisteme Informacioni në Ekonomi">Sisteme Informacioni n&euml; Ekonomi</option>
+                                </select>
+								<button id="search_submit_button" type="submit" class="search_submit_button trans_200" value="Submit">Kërko</button>
+							</form>
+						</div> 
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services -->
+
+	<div class="services page_section">
+		
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h1>Pse të përdorni StudR?</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row services_row">
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="images/earth-globe.svg" alt="">
+					</div>
+					<h3>Kurse online</h3>
+					<p>Nëpërmjet platformës do të mund të aksesoni kurset të cilat ndiqen në shkollë për të marr materiale shtesë prej profesorëve tuaj
+					   si dhe për të kontrolluar dijet tuaja nëpërmjet quiz-eve të afishuara për çdo kapitull.</p>
+				</div>
+
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="images/exam.svg" alt="">
+					</div>
+					<h3>Përvetësohuni nga shtëpia</h3>
+					<p>Duke i patur të gjitha materialet e kurseve në një vendndodhje do ta keni më të thjeshtë të gjeni çfarë kërkoni. Nëpërmjet quiz-eve do të mund të
+						provoni veten tuaj dhe përvetësimin e vazhdueshëm të njohurive.</p>
+				</div>
+
+				
+				<div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+					<div class="icon_container d-flex flex-column justify-content-end">
+						<img src="images/professor.svg" alt="">
+					</div>
+					<h3>Feedback i menjëhershëm</h3>
+					<p>Nëpërmjet platformës do të mund të merrni feedback të menjëhershëm mbi njohuritë tuaja duke kontrolluar pikët e quiz-eve të zhvilluara.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			
+			<!-- Footer Content -->
+
+			<div class="footer_content">
+				<div class="row">
+
+					<!-- Footer Column - About -->
+					<div class="col-lg-3 footer_col">
+
+						<!-- Logo -->
+						<div class="logo_container">
+							<div class="logo">
+								<img src="images/logo.png" alt="">
+								<span>StudR</span>
+							</div>
+						</div>
+
+						<p class="footer_about_text">Platforma e cila do t'ju ndihmojë të arrini rezultatet që gjithmonë i keni dëshiruar.</p>
+
+					</div>
+
+					<!-- Footer Column - Menu -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Menu</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="index">Kreu</a></li>
+								<li class="footer_list_item" sec:authorize="isAuthenticated()"><a href="/user_courses">Kurset</a></li>
+								<li class="footer_list_item"><a href="about">Rreth nesh</a></li>
+								<li class="footer_list_item"><a href="contact">Kontakt</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Usefull Links -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Faqe të nevojshme</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_list_item"><a href="#">FAQ</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer Column - Contact -->
+
+					<div class="col-lg-3 footer_col">
+						<div class="footer_column_title">Kontakt</div>
+						<div class="footer_column_content">
+							<ul>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									Fakulteti i Ekonomisë,
+									Rr. Arben Broci, 1003 Tiranë, Shqipëri
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>
+									+355 69 765 0584
+								</li>
+								<li class="footer_contact_item">
+									<div class="footer_contact_icon">
+										<img src="images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
+									</div>infostudr@gmail.com
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<!-- Footer Copyright -->
+
+			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+				<div class="footer_copyright">
+					<span>
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> Të gjitha të drejtat e rezervuara Denisa & Ketrina
+					</span>
+				</div>
+				<div class="footer_social ml-sm-auto">
+					<ul class="menu_social">
+						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+</div>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="styles/bootstrap4/popper.js"></script>
+	<script src="styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="plugins/greensock/TweenMax.min.js"></script>
+	<script src="plugins/greensock/TimelineMax.min.js"></script>
+	<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+	<script src="plugins/greensock/animation.gsap.min.js"></script>
+	<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+	<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="plugins/scrollTo/jquery.scrollTo.min.js"></script>
+	<script src="plugins/easing/easing.js"></script>
+	<script src="js/custom.js"></script>
+	<script type="text/javascript">
+	    var prevScrollpos = window.pageYOffset;
+	    window.onscroll = function() {
+	    var currentScrollPos = window.pageYOffset;
+	      if (prevScrollpos > currentScrollPos) {
+	        document.getElementById("navbar").style.top = "45px";
+	      } else {
+	        document.getElementById("navbar").style.top = "-110px";
+	      }
+	      prevScrollpos = currentScrollPos;
+	    }
+	</script>
+</body>
+</html>

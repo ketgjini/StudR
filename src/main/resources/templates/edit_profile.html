@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"
+ 	xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+ 
+ <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <title>Ndrysho të dhënat</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+	html {
+	   margin: 0px;
+	   height: 100%;
+	   width: 100%;
+	}
+	
+	body {
+	   /* background: -webkit-repeating-radial-gradient(top left, circle, #ffa600, #7677e3); */
+	   margin: 0px;
+	   min-height: 100%;
+	   width: 100%;
+	}
+  </style>
+</head>
+<br/><br/>
+<body>
+<div class="container bootstrap snippet">
+<form th:action="@{/updateUser/{uid}(uid=${user.id})}" method="post" th:object="${user}" enctype="multipart/form-data" class="form" id="registrationForm">
+    <div class="row">
+  		<div class="col-sm-3">
+              
+
+      <div class="text-center">
+        <img th:if="${picture} == null" src="/images/profile-avatar.png" class="avatar img-circle img-thumbnail" alt="foto profili">
+        <img th:if="${picture} != null" th:src="|data:image/png;base64,${userImage}|" alt="foto profili" class="avatar img-circle img-thumbnail" width="250" height="250">
+        <h6>Vendos nj&euml; foto tjet&euml;r...</h6>
+        <input type="file" name="profilePic" class="text-center center-block file-upload">
+      </div>  
+        </div>
+    	<div class="col-sm-9">
+    		<div class="col-sm-10"><h1><b th:text="${user.firstname}"></b> <b th:text="${user.lastname}"></b></h1></div>
+            <div style="display: inline-block;">
+	            <span class="nav" style="font-size: 20px; font-weight: bold">
+	            	<i class="fa fa-edit" style="font-size: 20px; font-weight: bold"></i> 
+	            	Ndrysho t&euml; dh&euml;nat
+	            </span>
+            </div>           
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>Emri</h4></label>
+                              <input type="text" class="form-control" name="firstname" id="firstname" 
+                              	th:field="*{firstname}" placeholder="Emri" title="Vendosni emrin tuaj" required
+                              	oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">	  
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Mbiemri</h4></label>
+                              <input type="text" class="form-control" name="lastname" id="lastname" 
+                              	th:field="*{lastname}" placeholder="Mbiemri" title="Vendosni mbiemrin tuaj" required
+                              	oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+                          </div>
+                      </div>
+          
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input disabled type="email" class="form-control" name="email" id="email" 
+                              	th:field="*{email}" placeholder="you@email.com" title="Vendosni adres&euml;n email">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="username"><h4>Username</h4></label>
+                              <input disabled type="text" class="form-control" name="username" id="username" 
+                              	th:field="*{username}" placeholder="Username" title="Vendosni username">
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="password"><h4>Fjal&euml;kalimi</h4></label>
+                              <input type="password" class="form-control" name="password" id="password" th:value="*{password}" 
+                              	th:field="*{password}" placeholder="Fjal&euml;kalimi" title="Fjal&euml;kalimi" required
+                              	oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="password2"><h4>Verifiko fjal&euml;kalimin</h4></label>
+                              <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" 
+                             	th:field="*{confirmPassword}" th:value="*{confirmPassword}" placeholder="Konfirmo fjal&euml;kalimin" title="Konfirmoni fjalëkalimin" 
+                             	required oninvalid="this.setCustomValidity('Ju lutemi vendosni një vlerë të vlefshme')" oninput="setCustomValidity('')">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-xs-6">
+					           <h4>Mbyll llogarinë</h4>
+					           <input type="radio" id="active" name="active" value="1" checked>
+							   <label for="active">Aktiv</label><br>
+							   <input type="radio" id="deactivate" name="active" value="0" >
+							   <label for="deactivate" style="color:red;">&Ccedil;aktivizo</label><br>
+						   </div>
+				      </div> 
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Ruaj</button>
+                               	<a class="btn btn-lg" href="/user_profile" id="cancelButton" style="background-color:#FA8072"><i class="fa fa-times" aria-hidden="true"></i> Anulo</a>
+                            </div>
+                      </div>
+             </div>
+          </div><!--/tab-content-->
+        </div><!--/col-9-->
+    </div><!--/row-->
+    </form>
+  </div>
+
+  <script type="text/javascript">
+	  $(document).ready(function() {
+		    var readURL = function(input) {
+		        if (input.files && input.files[0]) {
+		            var reader = new FileReader();
+	
+		            reader.onload = function (e) {
+		                $('.avatar').attr('src', e.target.result);
+		            }
+		    
+		            reader.readAsDataURL(input.files[0]);
+		        }
+		    }
+	
+		    $(".file-upload").on('change', function(){
+		        readURL(this);
+		    });
+		});
+  </script>
+  </body>
+</html>                                                      
